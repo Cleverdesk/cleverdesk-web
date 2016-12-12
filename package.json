@@ -1,0 +1,26 @@
+{
+  "name": "cleverdesk-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "gulp serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cleverdesk/cleverdesk-web.git"
+  },
+  "author": "Cleverdesk",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Cleverdesk/cleverdesk-web/issues"
+  },
+  "homepage": "https://github.com/Cleverdesk/cleverdesk-web#readme",
+  "devDependencies": {
+    "babel-preset-latest": "^6.16.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-live-server": "0.0.30"
+  }
+}
