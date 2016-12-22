@@ -21,8 +21,8 @@ class Socket {
     /**
     * Send a massenge
     * @param {string} channel - Name of the Channel the massenge should send to
-    * @param {object} payload - The data that should be send
-    * @param {function} callback - The function that should be called on response from the server
+    * @param {Object} payload - The data that should be send
+    * @param {msgCallback} callback - The function that should be called on response from the server
     * @access private
     */
     _sendMsg(channel, payload, callback) {
@@ -34,6 +34,13 @@ class Socket {
       this.socket.send(JSON.stringify(msg));
       this.callbacks[msg.request_id] = callback;
     }
+    /**
+     * _sendMsg Callback
+     * @callback msgCallback
+     * @param {Object} data
+     * @access private
+     */
+
     /**
     * login
     * @param {string} username - username
@@ -51,9 +58,14 @@ class Socket {
     }
     /**
     * Get all pages
-    * @param {function} callback - The function that should be called when the pages are fetched
+    * @param {getPagesCallback} callback - The function that should be called when the pages are fetched
     */
     getPages(callback) {
       const send = this._sendMsg('pages', {}, callback);
     }
+    /**
+     *getPages Callback
+     * @callback getPagesCallback
+     * @param {Object[]} pages - An Array containing the fetched pages
+     */
 }

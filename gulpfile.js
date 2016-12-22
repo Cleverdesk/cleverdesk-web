@@ -4,6 +4,15 @@ var babel = require("gulp-babel");
 var gutil = require('gulp-util');
 var jsdoc = require("gulp-jsdoc3");
 
+const jsdocConf = {
+  opts: {
+    destination: 'public/doc'
+  },
+  templates: {
+    systemName: "Cleverdesk"
+  }
+};
+
 gutil.log(`
 Cleverdesk-Web  Copyright (C) 2016  Cleverdesk
 This program comes with ABSOLUTELY NO WARRANTY.
@@ -19,7 +28,7 @@ gulp.task('compile', function() {
 
 gulp.task('doc', function() {
   gulp.src("public/src/**/*.js")
-      .pipe(jsdoc({opts: {destination: 'public/doc'}}));
+      .pipe(jsdoc(jsdocConf));
 });
 
 gulp.task('serve-compile', function() {
@@ -36,12 +45,12 @@ gulp.task('serve-compile', function() {
 
 gulp.task('serve-doc', function() {
   gulp.src("public/src/**/*.js")
-    .pipe(jsdoc({opts: {destination: 'public/doc'}}));
+    .pipe(jsdoc(jsdocConf));
 
 
   gulp.watch("public/src/**/*.js", function (file) {
     gulp.src("public/src/**/*.js")
-      .pipe(jsdoc({opts: {destination: 'public/doc'}}));
+      .pipe(jsdoc(jsdocConf));
   });
 });
 
