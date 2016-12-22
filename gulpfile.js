@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var gls = require('gulp-live-server');
 var babel = require("gulp-babel");
 var gutil = require('gulp-util');
+var jsdoc = require("gulp-jsdoc3");
 
 gutil.log(`
 Cleverdesk-Web  Copyright (C) 2016  Cleverdesk
@@ -16,6 +17,11 @@ gulp.task('compile', function() {
       .pipe(gulp.dest("public/dist"));
 });
 
+gulp.task('doc', function() {
+  gulp.src("public/src/**/*.js")
+      .pipe(jsdoc({opts: {destination: 'public/doc'}}));
+});
+
 gulp.task('serve-compile', function() {
   gulp.src("public/src/**/*.js")
       .pipe(babel())
@@ -28,7 +34,18 @@ gulp.task('serve-compile', function() {
   });
 });
 
-gulp.task('serve', ['serve-compile'], function() {
+gulp.task('serve-doc', function() {
+  gulp.src("public/src/**/*.js")
+    .pipe(jsdoc({opts: {destination: 'public/doc'}}));
+
+
+  gulp.watch("public/src/**/*.js", function (file) {
+    gulp.src("public/src/**/*.js")
+      .pipe(jsdoc({opts: {destination: 'public/doc'}}));
+  });
+});
+
+gulp.task('serve', ['serve-compile', 'serve-doc'], function() {
   //1. serve with default settings
   var server = gls.static('public', 3000); //equals to gls.static('public', 3000);
   server.start();

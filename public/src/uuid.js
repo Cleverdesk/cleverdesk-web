@@ -1,3 +1,7 @@
+/**
+* Generates an uuid
+* @returns {string} UUID
+*/
 function uuid() {
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)

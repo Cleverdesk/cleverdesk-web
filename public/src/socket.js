@@ -1,4 +1,9 @@
+/** Class representing a Socket. */
 class Socket {
+   /**
+   * Create a Socket.
+   * @param {string} host - The host value.
+   */
     constructor(host) {
         this.host = host;
         this.socket = new WebSocket(host);
@@ -13,6 +18,13 @@ class Socket {
         this.token = undefined;
         this.callbacks = {};
     }
+    /**
+    * Send a massenge
+    * @param {string} channel - Name of the Channel the massenge should send to
+    * @param {object} payload - The data that should be send
+    * @param {function} callback - The function that should be called on response from the server
+    * @access private
+    */
     _sendMsg(channel, payload, callback) {
       const msg = {
         channel,
@@ -22,14 +34,25 @@ class Socket {
       this.socket.send(JSON.stringify(msg));
       this.callbacks[msg.request_id] = callback;
     }
+    /**
+    * login
+    * @param {string} username - username
+    * @param {string} password - password
+    */
     login(username, password) {
       const payload = {
         username,
         password,
         lifetime: 86400
       };
-      this._sendMsg('gen_token', payload, function(data) {console.warn(data);});
+      this._sendMsg('gen_token', payload, function(data) {
+        console.warn(data);
+      });
     }
+    /**
+    * Get all pages
+    * @param {function} callback - The function that should be called when the pages are fetched
+    */
     getPages(callback) {
       const send = this._sendMsg('pages', {}, callback);
     }

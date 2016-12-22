@@ -23,6 +23,7 @@
     "bower": "^1.8.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
+    "gulp-jsdoc3": "^1.0.1",
     "gulp-live-server": "0.0.30"
   }
 }
