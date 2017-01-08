@@ -35,6 +35,19 @@ const startApp = (pages) => {
       });
   });
 
+  crossroads.addRoute('{plugin}/{page}', (plugin, page) => {
+      $.get('/templates/page.html', function(source) {
+        const template = Handlebars.compile(source);
+        socket.getPage(plugin, page, function(page) {
+          page = page.message;
+          const context = {pages, page};
+          const html = template(context);
+          $('#cleverdesk').replaceWith(html);
+          init();
+        });
+      });
+  });
+
   crossroads.bypassed.add(function(request){
     notFound(pages);
   });
@@ -50,10 +63,15 @@ const startApp = (pages) => {
 
 //Wait until Socket is Ready
 socket.socket.onopen = () => {
-  //Fetch all Pages
-  socket.getPages(function(data) {
-    const pages = data.message;
-    //Start Application
-    startApp(pages);
+  //login
+  socket.login('test', '12345', function(token) {
+    socket.auth(token.message, function() {
+      //Fetch all Pages
+      socket.getPages(function(data) {
+        const pages = data.message;
+        //Start Application
+        startApp(pages);
+      });
+    });
   });
 };
