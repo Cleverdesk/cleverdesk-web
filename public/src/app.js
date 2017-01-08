@@ -1,5 +1,5 @@
 //Open Socket Connection
-const socket = new Socket('ws://127.0.0.1:4567/ws');
+const socket = new Socket(`ws://${window.location.hostname}:4567/ws`);
 
 //Add Not Found handler
 const notFound = (pages) => {
@@ -50,8 +50,18 @@ const startApp = (pages) => {
       $.get('/templates/page.html', function(source) {
         const template = Handlebars.compile(source);
         socket.getPage(plugin, page, function(page) {
-          const pageContent = JSON.stringify(page.message);
-          const context = {pages, pageContent, pageName};
+
+          const pageComponents = page.message.components;
+          pageComponents.forEach((component, i, arr) => {
+            const name = component.name;
+            const json = 'json';
+            if(component.text) {
+              component.text = component.text.replace(/\n/g, '<br>');
+            }
+            component[name] = true;
+            component[json] = JSON.stringify(component);
+          });
+          const context = {pages, pageName, pageComponents};
           const html = template(context);
           $('#cleverdesk').replaceWith(html);
           init();

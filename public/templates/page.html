@@ -2,7 +2,15 @@
   {{> navbar}}
   <div class="container">
       <h1>{{pageName}}</h1>
-      <pre>{{pageContent}}</h1>
+      {{#each pageComponents}}
+        {{#if Label}}
+          <p>{{{text}}}</p>
+        {{else if Image}}
+          <img src="{{url}}">
+        {{else}}
+          <pre>{{json}}</pre>
+        {{/if}}
+      {{/each}}
   </div>
 
 </div>
