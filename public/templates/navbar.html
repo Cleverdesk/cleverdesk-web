@@ -1,0 +1,16 @@
+<nav>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">Cleverdesk</a>
+    <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      {{#each pages}}
+        <li><a href="#/{{this}}">{{@key}}</a></li>
+      {{/each}}
+    </ul>
+    <ul class="side-nav" id="mobile-nav">
+      {{#each pages}}
+        <li><a href="#/{{this}}">{{@key}}</a></li>
+      {{/each}}
+    </ul>
+  </div>
+</nav>

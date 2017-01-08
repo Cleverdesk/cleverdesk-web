@@ -19,6 +19,9 @@
   "dependencies": {
     "materialize": "^0.97.8",
     "vue": "^2.0.5",
-    "vue-router": "^2.0.3"
+    "vue-router": "^2.0.3",
+    "handlebars": "^4.0.5",
+    "crossroads": "^0.12.2",
+    "hasher": "^1.2.0"
   }
 }

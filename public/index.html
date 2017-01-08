@@ -2,26 +2,21 @@
 <html>
 <head>
   <title>Cleverdesk</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="/lib/materialize/dist/css/materialize.min.css" rel="stylesheet"/>
   <script src="/lib/jquery/dist/jquery.min.js"></script>
   <script src="/lib/materialize/dist/js/materialize.min.js"></script>
-  <script src="/lib/vue/dist/vue.min.js"></script>
-  <script src="/lib/vue-router/dist/vue-router.min.js"></script>
+  <script src="/lib/handlebars/handlebars.min.js"></script>
+  <script src="/lib/js-signals/dist/signals.min.js"></script>
+  <script src="/lib/hasher/dist/js/hasher.min.js"></script>
+  <script src="/lib/crossroads/dist/crossroads.min.js"></script>
 </head>
 <body>
-  <div id="cleverdesk">
-    <nav>
-      <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">Cleverdesk</a>
-      </div>
-    </nav>
-    <div class="container">
-      <router-view></router-view>
-    </div>
-  </div>
-  <script src="/dist/uuid.js"></scripT>
+  <div id="cleverdesk"></div>
+  <script src="/dist/uuid.js"></script>
   <script src="/dist/socket.js"></script>
-  <script src="/dist/pages/index.js"></script>
+  <script src="/dist/init.js"></script>
   <script src="/dist/app.js"></script>
 </body>
 </html>
