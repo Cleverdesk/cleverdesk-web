@@ -46,7 +46,7 @@ const startApp = (pages) => {
   });
 
   crossroads.addRoute('{plugin}/{page}', (plugin, page) => {
-      const pageName = page;
+      const pageName = page.replace(/\_/g, ' ');
       $.get('/templates/page.html', function(source) {
         const template = Handlebars.compile(source);
         socket.getPage(plugin, page, function(page) {
