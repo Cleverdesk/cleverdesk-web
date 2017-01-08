@@ -25,6 +25,16 @@ const startApp = (pages) => {
     hasher.setHash('index');
   });
 
+  crossroads.addRoute('login', () => {
+      $.get('/templates/login.html', function(source) {
+        const template = Handlebars.compile(source);
+        const context = {pages};
+        const html = template(context);
+        $('#cleverdesk').replaceWith(html);
+        init();
+      });
+  });
+
   crossroads.addRoute('index', () => {
       $.get('/templates/index.html', function(source) {
         const template = Handlebars.compile(source);
@@ -36,11 +46,12 @@ const startApp = (pages) => {
   });
 
   crossroads.addRoute('{plugin}/{page}', (plugin, page) => {
+      const pageName = page;
       $.get('/templates/page.html', function(source) {
         const template = Handlebars.compile(source);
         socket.getPage(plugin, page, function(page) {
-          page = page.message;
-          const context = {pages, page};
+          const pageContent = JSON.stringify(page.message);
+          const context = {pages, pageContent, pageName};
           const html = template(context);
           $('#cleverdesk').replaceWith(html);
           init();
