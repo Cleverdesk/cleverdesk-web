@@ -1,6 +1,7 @@
 /**
 * Generates an uuid
 * @returns {string} UUID
+* @see http://stackoverflow.com/a/105074
 */
 function uuid() {
   function s4() {
